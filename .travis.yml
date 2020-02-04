@@ -1,11 +1,14 @@
 language : java
-script :
-  - mvn clean verify
+
 jobs:
   include:
+    - stage: Build
+      script :
+        - mvn clean verify
+
     - stage: build docker image
       script:
-      - echo "$DOCKER_HUB_PWD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker build -t sample-application-students .
-      - docker tag sample-application-students $DOCKER_USERNAME/sample-application-students
-      - docker push $DOCKER_USERNAME/sample-application-students
+        - echo "$DOCKER_HUB_PWD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker build -t sample-application-students .
+        - docker tag sample-application-students $DOCKER_USERNAME/sample-application-students
+        - docker push $DOCKER_USERNAME/sample-application-students
