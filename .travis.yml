@@ -12,9 +12,9 @@ jobs:
         - docker build -t sample-application-students-db ./sample-application-db-changelog-job
         - docker tag sample-application-students-db $DOCKER_USERNAME/sample-application-students-db
         - docker push $DOCKER_USERNAME/sample-application-students-db
-      script:
-        - echo "$DOCKER_HUB_PWD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker build -t sample-application-students-http ./sample-application-http-api-server
-        - docker tag sample-application-students-http $DOCKER_USERNAME/sample-application-students-http
-        - docker push $DOCKER_USERNAME/sample-application-students-http
+    - script:
+      - echo "$DOCKER_HUB_PWD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - docker build -t sample-application-students-http ./sample-application-http-api-server
+      - docker tag sample-application-students-http $DOCKER_USERNAME/sample-application-students-http
+      - docker push $DOCKER_USERNAME/sample-application-students-http
 
